@@ -1,0 +1,820 @@
+<!DOCTYPE html><html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Einstein Time Lab | Simulasi Dilatasi Waktu</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    :root {
+      --bg: #070814;
+      --bg2: #0b1024;
+      --card: rgba(255, 255, 255, 0.08);
+      --card2: rgba(255, 255, 255, 0.12);
+      --border: rgba(255, 255, 255, 0.16);
+      --text: #f7fbff;
+      --muted: #aeb8d8;
+      --cyan: #35e7ff;
+      --blue: #6a7dff;
+      --purple: #b45cff;
+      --pink: #ff5adf;
+      --yellow: #ffe66d;
+      --green: #5dffb2;
+      --red: #ff6f91;
+      --shadow: 0 22px 70px rgba(0, 0, 0, 0.38);
+      --radius: 26px;
+    }* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  font-family: "Inter", system-ui, sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(circle at 20% 20%, rgba(53, 231, 255, 0.22), transparent 32%),
+    radial-gradient(circle at 82% 18%, rgba(180, 92, 255, 0.24), transparent 34%),
+    radial-gradient(circle at 50% 95%, rgba(255, 90, 223, 0.16), transparent 35%),
+    linear-gradient(145deg, var(--bg), var(--bg2));
+  overflow-x: hidden;
+}
+
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -2;
+  background-image:
+    radial-gradient(circle, rgba(255,255,255,0.9) 1px, transparent 1px),
+    radial-gradient(circle, rgba(255,255,255,0.5) 1px, transparent 1px);
+  background-size: 86px 86px, 142px 142px;
+  animation: stars 36s linear infinite;
+  opacity: 0.28;
+}
+
+body::after {
+  z-index: -1;
+  background: radial-gradient(circle at center, transparent 0%, rgba(7, 8, 20, 0.38) 55%, rgba(7, 8, 20, 0.9) 100%);
+  animation: none;
+  opacity: 1;
+}
+
+@keyframes stars {
+  from { transform: translateY(0); }
+  to { transform: translateY(180px); }
+}
+
+.container {
+  width: min(1180px, calc(100% - 34px));
+  margin: 0 auto;
+  padding: 32px 0 56px;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 18px;
+  margin-bottom: 34px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: rgba(255,255,255,0.07);
+  backdrop-filter: blur(18px);
+  box-shadow: var(--shadow);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+}
+
+.brand-icon {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--cyan), var(--purple));
+  color: #06101d;
+  font-size: 22px;
+  box-shadow: 0 0 30px rgba(53, 231, 255, 0.45);
+}
+
+.pill {
+  padding: 10px 15px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 13px;
+  background: rgba(255,255,255,0.07);
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 24px;
+  align-items: stretch;
+  margin-bottom: 24px;
+}
+
+.hero-card, .panel, .mini-card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: linear-gradient(145deg, rgba(255,255,255,0.12), rgba(255,255,255,0.05));
+  backdrop-filter: blur(20px);
+  box-shadow: var(--shadow);
+}
+
+.hero-card {
+  padding: 34px;
+  overflow: hidden;
+  position: relative;
+}
+
+.hero-card::before {
+  content: "";
+  position: absolute;
+  width: 270px;
+  height: 270px;
+  border-radius: 50%;
+  right: -110px;
+  top: -110px;
+  background: radial-gradient(circle, rgba(53,231,255,0.34), transparent 70%);
+}
+
+h1 {
+  font-size: clamp(36px, 7vw, 76px);
+  line-height: 0.94;
+  letter-spacing: -0.075em;
+  margin-bottom: 18px;
+}
+
+.gradient-text {
+  background: linear-gradient(90deg, var(--cyan), var(--yellow), var(--pink));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.lead {
+  max-width: 680px;
+  color: var(--muted);
+  font-size: 17px;
+  line-height: 1.75;
+  margin-bottom: 24px;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.btn {
+  border: 0;
+  color: var(--text);
+  cursor: pointer;
+  padding: 13px 18px;
+  border-radius: 999px;
+  font-weight: 800;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid var(--border);
+  transition: 0.25s ease;
+}
+
+.btn.primary {
+  color: #06101d;
+  background: linear-gradient(135deg, var(--cyan), var(--green));
+  box-shadow: 0 0 24px rgba(53,231,255,0.35);
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.08);
+}
+
+.space-visual {
+  position: relative;
+  min-height: 420px;
+  overflow: hidden;
+  padding: 24px;
+}
+
+.orbit {
+  position: absolute;
+  inset: 42px;
+  border: 1px solid rgba(255,255,255,0.16);
+  border-radius: 50%;
+  animation: spin 18s linear infinite;
+}
+
+.orbit:nth-child(2) {
+  inset: 86px;
+  animation-duration: 12s;
+  opacity: 0.7;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.planet {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 138px;
+  height: 138px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 35% 30%, #ffffff, transparent 10%),
+    radial-gradient(circle at 35% 35%, #39d6ff, #2455d6 45%, #0b1f71 74%);
+  box-shadow: inset -22px -22px 40px rgba(0,0,0,0.35), 0 0 50px rgba(53,231,255,0.36);
+}
+
+.ship {
+  position: absolute;
+  left: 8%;
+  top: 60%;
+  width: 92px;
+  height: 34px;
+  border-radius: 50% 12px 12px 50%;
+  background: linear-gradient(90deg, #fff, #99f4ff, #6a7dff);
+  box-shadow: 0 0 32px rgba(53,231,255,0.7);
+  animation: fly 4s ease-in-out infinite alternate;
+}
+
+.ship::before {
+  content: "";
+  position: absolute;
+  left: -88px;
+  top: 8px;
+  width: 90px;
+  height: 18px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, transparent, rgba(255,90,223,0.2), rgba(53,231,255,0.85));
+  filter: blur(2px);
+}
+
+.ship::after {
+  content: "";
+  position: absolute;
+  right: 12px;
+  top: 8px;
+  width: 17px;
+  height: 17px;
+  border-radius: 50%;
+  background: rgba(5, 11, 25, 0.65);
+}
+
+@keyframes fly {
+  from { transform: translateX(0) translateY(0) rotate(-5deg); }
+  to { transform: translateX(52px) translateY(-28px) rotate(6deg); }
+}
+
+.formula-box {
+  position: absolute;
+  left: 22px;
+  right: 22px;
+  bottom: 22px;
+  padding: 18px;
+  border-radius: 22px;
+  background: rgba(0, 0, 0, 0.24);
+  border: 1px solid var(--border);
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.formula-box strong {
+  color: var(--text);
+  display: block;
+  margin-bottom: 4px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.panel {
+  padding: 24px;
+}
+
+.panel h2 {
+  font-size: 22px;
+  letter-spacing: -0.03em;
+  margin-bottom: 18px;
+}
+
+.control-group {
+  margin-bottom: 22px;
+}
+
+.control-label {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 12px;
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.value-badge {
+  color: #06101d;
+  background: linear-gradient(135deg, var(--cyan), var(--green));
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-weight: 900;
+}
+
+input[type="range"] {
+  width: 100%;
+  accent-color: var(--cyan);
+}
+
+input[type="number"], select {
+  width: 100%;
+  padding: 14px 15px;
+  border-radius: 18px;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.09);
+  color: var(--text);
+  outline: none;
+  font-weight: 700;
+}
+
+select option {
+  color: #101426;
+}
+
+.preset-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.preset {
+  padding: 10px 8px;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.08);
+  color: var(--text);
+  cursor: pointer;
+  font-weight: 800;
+}
+
+.results {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.mini-card {
+  padding: 20px;
+  min-height: 142px;
+}
+
+.mini-card .label {
+  color: var(--muted);
+  font-size: 13px;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.mini-card .number {
+  font-size: clamp(24px, 3vw, 34px);
+  font-weight: 950;
+  letter-spacing: -0.06em;
+  margin-bottom: 6px;
+}
+
+.mini-card .desc {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.canvas-wrap {
+  padding: 20px;
+  height: 380px;
+}
+
+.explain {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.info-card {
+  padding: 20px;
+  border-radius: 24px;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.07);
+  line-height: 1.65;
+  color: var(--muted);
+}
+
+.info-card h3 {
+  color: var(--text);
+  margin-bottom: 8px;
+  font-size: 16px;
+}
+
+.bar-wrap {
+  margin-top: 18px;
+  padding: 16px;
+  border-radius: 22px;
+  border: 1px solid var(--border);
+  background: rgba(0,0,0,0.18);
+}
+
+.bar-label {
+  display: flex;
+  justify-content: space-between;
+  color: var(--muted);
+  font-size: 13px;
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+
+.bar {
+  height: 13px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.12);
+  overflow: hidden;
+}
+
+.bar-fill {
+  height: 100%;
+  border-radius: inherit;
+  width: 0%;
+  background: linear-gradient(90deg, var(--cyan), var(--pink));
+  box-shadow: 0 0 20px rgba(53,231,255,0.55);
+  transition: 0.25s ease;
+}
+
+.footer {
+  margin-top: 28px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+@media (max-width: 980px) {
+  .hero, .grid, .explain {
+    grid-template-columns: 1fr;
+  }
+  .results {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .space-visual {
+    min-height: 360px;
+  }
+}
+
+@media (max-width: 560px) {
+  .container { width: min(100% - 22px, 1180px); padding-top: 18px; }
+  .nav { border-radius: 24px; align-items: flex-start; flex-direction: column; }
+  .hero-card, .panel { padding: 20px; }
+  .results { grid-template-columns: 1fr; }
+  .preset-row { grid-template-columns: 1fr; }
+  .canvas-wrap { height: 310px; padding: 12px; }
+  .pill { width: 100%; }
+}
+
+  </style>
+</head>
+<body>
+  <main class="container">
+    <nav class="nav">
+      <div class="brand">
+        <div class="brand-icon">⏳</div>
+        <div>Einstein Time Lab</div>
+      </div>
+      <div class="pill">Simulasi relativitas khusus + gravitasi sederhana</div>
+    </nav><section class="hero">
+  <div class="hero-card">
+    <h1>Rasakan waktu melambat saat mendekati <span class="gradient-text">kecepatan cahaya.</span></h1>
+    <p class="lead">
+      Geser kecepatan wahana, ubah durasi perjalanan, lalu lihat perbandingan waktu antara pengamat di Bumi dan penumpang. Semakin dekat kecepatan ke cahaya, semakin besar faktor gamma, dan semakin besar perbedaan waktu yang muncul.
+    </p>
+    <div class="hero-actions">
+      <button class="btn primary" onclick="setPreset(99)">Coba 99% c</button>
+      <button class="btn" onclick="setScenario('proxima')">Mode Proxima Centauri</button>
+      <button class="btn" onclick="setScenario('blackhole')">Mode Black Hole</button>
+    </div>
+  </div>
+
+  <div class="hero-card space-visual">
+    <div class="orbit"></div>
+    <div class="orbit"></div>
+    <div class="planet"></div>
+    <div class="ship" id="ship"></div>
+    <div class="formula-box">
+      <strong>Rumus utama:</strong>
+      γ = 1 / √(1 − v²/c²). Waktu penumpang ≈ waktu Bumi / γ.
+    </div>
+  </div>
+</section>
+
+<section class="grid">
+  <aside class="panel">
+    <h2>Kontrol Simulasi</h2>
+
+    <div class="control-group">
+      <label class="control-label">
+        <span>Mode simulasi</span>
+      </label>
+      <select id="scenario" onchange="updateSimulation()">
+        <option value="custom">Custom: waktu Bumi manual</option>
+        <option value="proxima">Perjalanan ke Proxima Centauri</option>
+        <option value="blackhole">Dekat Black Hole</option>
+      </select>
+    </div>
+
+    <div class="control-group" id="speedControl">
+      <label class="control-label">
+        <span>Kecepatan wahana</span>
+        <span class="value-badge" id="speedText">90% c</span>
+      </label>
+      <input type="range" id="speed" min="0" max="99.9" step="0.1" value="90" oninput="updateSimulation()" />
+      <div class="preset-row">
+        <button class="preset" onclick="setPreset(50)">50% c</button>
+        <button class="preset" onclick="setPreset(90)">90% c</button>
+        <button class="preset" onclick="setPreset(99.9)">99.9% c</button>
+      </div>
+    </div>
+
+    <div class="control-group" id="earthTimeControl">
+      <label class="control-label">
+        <span>Waktu menurut Bumi (tahun)</span>
+        <span class="value-badge" id="earthInputText">10</span>
+      </label>
+      <input type="range" id="earthYears" min="1" max="100" step="1" value="10" oninput="updateSimulation()" />
+    </div>
+
+    <div class="control-group" id="blackHoleControl" style="display:none;">
+      <label class="control-label">
+        <span>Seberapa dekat ke horizon</span>
+        <span class="value-badge" id="gravityText">80%</span>
+      </label>
+      <input type="range" id="gravity" min="0" max="98" step="1" value="80" oninput="updateSimulation()" />
+    </div>
+
+    <div class="bar-wrap">
+      <div class="bar-label">
+        <span>Intensitas efek relativitas</span>
+        <span id="effectPercent">0%</span>
+      </div>
+      <div class="bar"><div class="bar-fill" id="effectBar"></div></div>
+    </div>
+  </aside>
+
+  <section>
+    <div class="results">
+      <div class="mini-card">
+        <div class="label">Faktor Gamma / Gravitasi</div>
+        <div class="number" id="gammaValue">2.29×</div>
+        <div class="desc">Semakin besar nilainya, semakin kuat efek perlambatan waktu.</div>
+      </div>
+      <div class="mini-card">
+        <div class="label">Waktu Bumi</div>
+        <div class="number" id="earthTime">10 tahun</div>
+        <div class="desc">Durasi yang diukur pengamat jauh atau pengamat di Bumi.</div>
+      </div>
+      <div class="mini-card">
+        <div class="label">Waktu Penumpang</div>
+        <div class="number" id="travelerTime">4.36 tahun</div>
+        <div class="desc">Durasi yang dialami langsung oleh penumpang wahana.</div>
+      </div>
+      <div class="mini-card">
+        <div class="label">Selisih Waktu</div>
+        <div class="number" id="differenceTime">5.64 tahun</div>
+        <div class="desc">Perbedaan umur/waktu antara dua pengamat.</div>
+      </div>
+    </div>
+
+    <div class="panel canvas-wrap">
+      <canvas id="timeChart"></canvas>
+    </div>
+
+    <div class="explain">
+      <div class="info-card">
+        <h3>🚀 Kenapa waktu bisa beda?</h3>
+        <p>Dalam relativitas, waktu bukan sesuatu yang mutlak. Dua pengamat yang bergerak relatif sangat cepat bisa mengukur durasi yang berbeda.</p>
+      </div>
+      <div class="info-card">
+        <h3>👨‍🚀 Apakah penumpang merasa lambat?</h3>
+        <p>Tidak. Penumpang tetap merasa waktunya normal. Yang berbeda adalah saat waktunya dibandingkan dengan pengamat di Bumi.</p>
+      </div>
+      <div class="info-card">
+        <h3>🕳️ Mode black hole</h3>
+        <p>Di dekat objek sangat masif, waktu juga bisa berjalan lebih lambat dibanding pengamat yang jauh dari medan gravitasi kuat.</p>
+      </div>
+    </div>
+  </section>
+</section>
+
+<footer class="footer">
+  Dibuat untuk edukasi. Mode black hole adalah pendekatan visual sederhana, bukan simulasi relativitas umum penuh.
+</footer>
+
+  </main>  <script>
+    const speedInput = document.getElementById('speed');
+    const earthYearsInput = document.getElementById('earthYears');
+    const scenarioInput = document.getElementById('scenario');
+    const gravityInput = document.getElementById('gravity');
+    const ship = document.getElementById('ship');
+
+    const speedText = document.getElementById('speedText');
+    const earthInputText = document.getElementById('earthInputText');
+    const gravityText = document.getElementById('gravityText');
+    const gammaValue = document.getElementById('gammaValue');
+    const earthTime = document.getElementById('earthTime');
+    const travelerTime = document.getElementById('travelerTime');
+    const differenceTime = document.getElementById('differenceTime');
+    const effectBar = document.getElementById('effectBar');
+    const effectPercent = document.getElementById('effectPercent');
+
+    const earthTimeControl = document.getElementById('earthTimeControl');
+    const blackHoleControl = document.getElementById('blackHoleControl');
+    const speedControl = document.getElementById('speedControl');
+
+    let chart;
+
+    function fmt(value) {
+      if (!Number.isFinite(value)) return '∞';
+      if (value >= 1000) return value.toLocaleString('id-ID', { maximumFractionDigits: 0 });
+      if (value >= 100) return value.toFixed(1).replace('.', ',');
+      if (value >= 10) return value.toFixed(2).replace('.', ',');
+      return value.toFixed(3).replace('.', ',');
+    }
+
+    function yearsText(value) {
+      if (value < 1) return `${fmt(value * 12)} bulan`;
+      return `${fmt(value)} tahun`;
+    }
+
+    function calcGamma(speedPercent) {
+      const beta = speedPercent / 100;
+      return 1 / Math.sqrt(1 - beta * beta);
+    }
+
+    function calcBlackHoleFactor(closeness) {
+      const safe = Math.min(closeness / 100, 0.985);
+      return 1 / Math.sqrt(1 - safe);
+    }
+
+    function setPreset(value) {
+      speedInput.value = value;
+      scenarioInput.value = 'custom';
+      updateSimulation();
+    }
+
+    function setScenario(value) {
+      scenarioInput.value = value;
+      if (value === 'proxima') speedInput.value = 99;
+      if (value === 'blackhole') gravityInput.value = 88;
+      updateSimulation();
+    }
+
+    function buildChart(labels, earthData, travelerData) {
+      const ctx = document.getElementById('timeChart');
+      if (chart) chart.destroy();
+
+      chart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels,
+          datasets: [
+            {
+              label: 'Waktu menurut Bumi / pengamat jauh',
+              data: earthData,
+              borderWidth: 3,
+              tension: 0.35
+            },
+            {
+              label: 'Waktu yang dialami penumpang',
+              data: travelerData,
+              borderWidth: 3,
+              tension: 0.35
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              labels: { color: '#f7fbff', font: { weight: '700' } }
+            },
+            tooltip: {
+              callbacks: {
+                label: (ctx) => `${ctx.dataset.label}: ${fmt(ctx.raw)} tahun`
+              }
+            }
+          },
+          scales: {
+            x: {
+              ticks: { color: '#aeb8d8' },
+              grid: { color: 'rgba(255,255,255,0.08)' }
+            },
+            y: {
+              ticks: { color: '#aeb8d8' },
+              grid: { color: 'rgba(255,255,255,0.08)' }
+            }
+          }
+        }
+      });
+    }
+
+    function updateSimulation() {
+      const scenario = scenarioInput.value;
+      const speed = Number(speedInput.value);
+      let earthYears = Number(earthYearsInput.value);
+      let factor = calcGamma(speed);
+      let travelerYears;
+      let difference;
+      let effect;
+      let labels = [];
+      let earthData = [];
+      let travelerData = [];
+
+      speedText.textContent = `${speed}% c`;
+      earthInputText.textContent = earthYears;
+      gravityText.textContent = `${gravityInput.value}%`;
+
+      blackHoleControl.style.display = scenario === 'blackhole' ? 'block' : 'none';
+      speedControl.style.display = scenario === 'blackhole' ? 'none' : 'block';
+      earthTimeControl.style.display = scenario === 'proxima' ? 'none' : 'block';
+
+      if (scenario === 'proxima') {
+        const distanceLightYears = 4.24;
+        earthYears = distanceLightYears / (speed / 100);
+        factor = calcGamma(speed);
+        travelerYears = earthYears / factor;
+        difference = earthYears - travelerYears;
+        effect = Math.min((factor / 25) * 100, 100);
+
+        const speeds = [50, 70, 80, 90, 95, 99, 99.5, 99.9];
+        labels = speeds.map(s => `${s}% c`);
+        earthData = speeds.map(s => distanceLightYears / (s / 100));
+        travelerData = speeds.map(s => (distanceLightYears / (s / 100)) / calcGamma(s));
+      } else if (scenario === 'blackhole') {
+        earthYears = Number(earthYearsInput.value);
+        factor = calcBlackHoleFactor(Number(gravityInput.value));
+        travelerYears = earthYears / factor;
+        difference = earthYears - travelerYears;
+        effect = Math.min((factor / 10) * 100, 100);
+
+        const gravities = [0, 20, 40, 60, 75, 85, 92, 98];
+        labels = gravities.map(g => `${g}% dekat`);
+        earthData = gravities.map(() => earthYears);
+        travelerData = gravities.map(g => earthYears / calcBlackHoleFactor(g));
+      } else {
+        earthYears = Number(earthYearsInput.value);
+        factor = calcGamma(speed);
+        travelerYears = earthYears / factor;
+        difference = earthYears - travelerYears;
+        effect = Math.min((factor / 25) * 100, 100);
+
+        const speeds = [0, 20, 40, 60, 80, 90, 95, 99, 99.9];
+        labels = speeds.map(s => `${s}% c`);
+        earthData = speeds.map(() => earthYears);
+        travelerData = speeds.map(s => earthYears / calcGamma(s));
+      }
+
+      gammaValue.textContent = `${fmt(factor)}×`;
+      earthTime.textContent = yearsText(earthYears);
+      travelerTime.textContent = yearsText(travelerYears);
+      differenceTime.textContent = yearsText(difference);
+      effectBar.style.width = `${effect}%`;
+      effectPercent.textContent = `${Math.round(effect)}%`;
+
+      const shipSpeed = Math.max(1.2, 5 - (speed / 100) * 3.5);
+      ship.style.animationDuration = `${shipSpeed}s`;
+      ship.style.filter = `drop-shadow(0 0 ${8 + speed / 4}px rgba(53,231,255,0.8))`;
+
+      buildChart(labels, earthData, travelerData);
+    }
+
+    updateSimulation();
+  </script></body>
+</html>
