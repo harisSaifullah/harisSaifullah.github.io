@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="id">
+<!DOCTYPE html>
+<html lang="id">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -25,480 +26,487 @@
       --red: #ff6f91;
       --shadow: 0 22px 70px rgba(0, 0, 0, 0.38);
       --radius: 26px;
-    }* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+    }
 
-body {
-  min-height: 100vh;
-  font-family: "Inter", system-ui, sans-serif;
-  color: var(--text);
-  background:
-    radial-gradient(circle at 20% 20%, rgba(53, 231, 255, 0.22), transparent 32%),
-    radial-gradient(circle at 82% 18%, rgba(180, 92, 255, 0.24), transparent 34%),
-    radial-gradient(circle at 50% 95%, rgba(255, 90, 223, 0.16), transparent 35%),
-    linear-gradient(145deg, var(--bg), var(--bg2));
-  overflow-x: hidden;
-}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-body::before,
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: -2;
-  background-image:
-    radial-gradient(circle, rgba(255,255,255,0.9) 1px, transparent 1px),
-    radial-gradient(circle, rgba(255,255,255,0.5) 1px, transparent 1px);
-  background-size: 86px 86px, 142px 142px;
-  animation: stars 36s linear infinite;
-  opacity: 0.28;
-}
+    body {
+      min-height: 100vh;
+      font-family: "Inter", system-ui, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 20% 20%, rgba(53, 231, 255, 0.22), transparent 32%),
+        radial-gradient(circle at 82% 18%, rgba(180, 92, 255, 0.24), transparent 34%),
+        radial-gradient(circle at 50% 95%, rgba(255, 90, 223, 0.16), transparent 35%),
+        linear-gradient(145deg, var(--bg), var(--bg2));
+      overflow-x: hidden;
+    }
 
-body::after {
-  z-index: -1;
-  background: radial-gradient(circle at center, transparent 0%, rgba(7, 8, 20, 0.38) 55%, rgba(7, 8, 20, 0.9) 100%);
-  animation: none;
-  opacity: 1;
-}
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -2;
+      background-image:
+        radial-gradient(circle, rgba(255,255,255,0.9) 1px, transparent 1px),
+        radial-gradient(circle, rgba(255,255,255,0.5) 1px, transparent 1px);
+      background-size: 86px 86px, 142px 142px;
+      animation: stars 36s linear infinite;
+      opacity: 0.28;
+    }
 
-@keyframes stars {
-  from { transform: translateY(0); }
-  to { transform: translateY(180px); }
-}
+    body::after {
+      z-index: -1;
+      background: radial-gradient(circle at center, transparent 0%, rgba(7, 8, 20, 0.38) 55%, rgba(7, 8, 20, 0.9) 100%);
+      animation: none;
+      opacity: 1;
+    }
 
-.container {
-  width: min(1180px, calc(100% - 34px));
-  margin: 0 auto;
-  padding: 32px 0 56px;
-}
+    @keyframes stars {
+      from { transform: translateY(0); }
+      to { transform: translateY(180px); }
+    }
 
-.nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 16px;
-  padding: 14px 18px;
-  margin-bottom: 34px;
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  background: rgba(255,255,255,0.07);
-  backdrop-filter: blur(18px);
-  box-shadow: var(--shadow);
-}
+    .container {
+      width: min(1180px, calc(100% - 34px));
+      margin: 0 auto;
+      padding: 32px 0 56px;
+    }
 
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font-weight: 900;
-  letter-spacing: -0.04em;
-}
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      padding: 14px 18px;
+      margin-bottom: 34px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.07);
+      backdrop-filter: blur(18px);
+      box-shadow: var(--shadow);
+    }
 
-.brand-icon {
-  width: 42px;
-  height: 42px;
-  display: grid;
-  place-items: center;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--cyan), var(--purple));
-  color: #06101d;
-  font-size: 22px;
-  box-shadow: 0 0 30px rgba(53, 231, 255, 0.45);
-}
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+    }
 
-.pill {
-  padding: 10px 15px;
-  border-radius: 999px;
-  border: 1px solid var(--border);
-  color: var(--muted);
-  font-size: 13px;
-  background: rgba(255,255,255,0.07);
-}
+    .brand-icon {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--cyan), var(--purple));
+      color: #06101d;
+      font-size: 22px;
+      box-shadow: 0 0 30px rgba(53, 231, 255, 0.45);
+    }
 
-.hero {
-  display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  gap: 24px;
-  align-items: stretch;
-  margin-bottom: 24px;
-}
+    .pill {
+      padding: 10px 15px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 13px;
+      background: rgba(255,255,255,0.07);
+    }
 
-.hero-card, .panel, .mini-card {
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  background: linear-gradient(145deg, rgba(255,255,255,0.12), rgba(255,255,255,0.05));
-  backdrop-filter: blur(20px);
-  box-shadow: var(--shadow);
-}
+    .hero {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 24px;
+      align-items: stretch;
+      margin-bottom: 24px;
+    }
 
-.hero-card {
-  padding: 34px;
-  overflow: hidden;
-  position: relative;
-}
+    .hero-card, .panel, .mini-card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: linear-gradient(145deg, rgba(255,255,255,0.12), rgba(255,255,255,0.05));
+      backdrop-filter: blur(20px);
+      box-shadow: var(--shadow);
+    }
 
-.hero-card::before {
-  content: "";
-  position: absolute;
-  width: 270px;
-  height: 270px;
-  border-radius: 50%;
-  right: -110px;
-  top: -110px;
-  background: radial-gradient(circle, rgba(53,231,255,0.34), transparent 70%);
-}
+    .hero-card {
+      padding: 34px;
+      overflow: hidden;
+      position: relative;
+    }
 
-h1 {
-  font-size: clamp(36px, 7vw, 76px);
-  line-height: 0.94;
-  letter-spacing: -0.075em;
-  margin-bottom: 18px;
-}
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      width: 270px;
+      height: 270px;
+      border-radius: 50%;
+      right: -110px;
+      top: -110px;
+      background: radial-gradient(circle, rgba(53,231,255,0.34), transparent 70%);
+    }
 
-.gradient-text {
-  background: linear-gradient(90deg, var(--cyan), var(--yellow), var(--pink));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
+    h1 {
+      font-size: clamp(36px, 7vw, 76px);
+      line-height: 0.94;
+      letter-spacing: -0.075em;
+      margin-bottom: 18px;
+    }
 
-.lead {
-  max-width: 680px;
-  color: var(--muted);
-  font-size: 17px;
-  line-height: 1.75;
-  margin-bottom: 24px;
-}
+    .gradient-text {
+      background: linear-gradient(90deg, var(--cyan), var(--yellow), var(--pink));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
 
-.hero-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-}
+    .lead {
+      max-width: 680px;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.75;
+      margin-bottom: 24px;
+    }
 
-.btn {
-  border: 0;
-  color: var(--text);
-  cursor: pointer;
-  padding: 13px 18px;
-  border-radius: 999px;
-  font-weight: 800;
-  background: rgba(255,255,255,0.1);
-  border: 1px solid var(--border);
-  transition: 0.25s ease;
-}
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
 
-.btn.primary {
-  color: #06101d;
-  background: linear-gradient(135deg, var(--cyan), var(--green));
-  box-shadow: 0 0 24px rgba(53,231,255,0.35);
-}
+    .btn {
+      border: 0;
+      color: var(--text);
+      cursor: pointer;
+      padding: 13px 18px;
+      border-radius: 999px;
+      font-weight: 800;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid var(--border);
+      transition: 0.25s ease;
+    }
 
-.btn:hover {
-  transform: translateY(-2px);
-  filter: brightness(1.08);
-}
+    .btn.active {
+      color: #06101d;
+      background: linear-gradient(135deg, var(--cyan), var(--green));
+      box-shadow: 0 0 24px rgba(53,231,255,0.35);
+    }
 
-.space-visual {
-  position: relative;
-  min-height: 420px;
-  overflow: hidden;
-  padding: 24px;
-}
+    .btn.primary {
+      color: #06101d;
+      background: linear-gradient(135deg, var(--cyan), var(--green));
+      box-shadow: 0 0 24px rgba(53,231,255,0.35);
+    }
 
-.orbit {
-  position: absolute;
-  inset: 42px;
-  border: 1px solid rgba(255,255,255,0.16);
-  border-radius: 50%;
-  animation: spin 18s linear infinite;
-}
+    .btn:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.08);
+    }
 
-.orbit:nth-child(2) {
-  inset: 86px;
-  animation-duration: 12s;
-  opacity: 0.7;
-}
+    .space-visual {
+      position: relative;
+      min-height: 420px;
+      overflow: hidden;
+      padding: 24px;
+    }
 
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}
+    .orbit {
+      position: absolute;
+      inset: 42px;
+      border: 1px solid rgba(255,255,255,0.16);
+      border-radius: 50%;
+      animation: spin 18s linear infinite;
+    }
 
-.planet {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 138px;
-  height: 138px;
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
-  background:
-    radial-gradient(circle at 35% 30%, #ffffff, transparent 10%),
-    radial-gradient(circle at 35% 35%, #39d6ff, #2455d6 45%, #0b1f71 74%);
-  box-shadow: inset -22px -22px 40px rgba(0,0,0,0.35), 0 0 50px rgba(53,231,255,0.36);
-}
+    .orbit:nth-child(2) {
+      inset: 86px;
+      animation-duration: 12s;
+      opacity: 0.7;
+    }
 
-.ship {
-  position: absolute;
-  left: 8%;
-  top: 60%;
-  width: 92px;
-  height: 34px;
-  border-radius: 50% 12px 12px 50%;
-  background: linear-gradient(90deg, #fff, #99f4ff, #6a7dff);
-  box-shadow: 0 0 32px rgba(53,231,255,0.7);
-  animation: fly 4s ease-in-out infinite alternate;
-}
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
 
-.ship::before {
-  content: "";
-  position: absolute;
-  left: -88px;
-  top: 8px;
-  width: 90px;
-  height: 18px;
-  border-radius: 999px;
-  background: linear-gradient(90deg, transparent, rgba(255,90,223,0.2), rgba(53,231,255,0.85));
-  filter: blur(2px);
-}
+    .planet {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 138px;
+      height: 138px;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 35% 30%, #ffffff, transparent 10%),
+        radial-gradient(circle at 35% 35%, #39d6ff, #2455d6 45%, #0b1f71 74%);
+      box-shadow: inset -22px -22px 40px rgba(0,0,0,0.35), 0 0 50px rgba(53,231,255,0.36);
+    }
 
-.ship::after {
-  content: "";
-  position: absolute;
-  right: 12px;
-  top: 8px;
-  width: 17px;
-  height: 17px;
-  border-radius: 50%;
-  background: rgba(5, 11, 25, 0.65);
-}
+    .ship {
+      position: absolute;
+      left: 8%;
+      top: 60%;
+      width: 92px;
+      height: 34px;
+      border-radius: 50% 12px 12px 50%;
+      background: linear-gradient(90deg, #fff, #99f4ff, #6a7dff);
+      box-shadow: 0 0 32px rgba(53,231,255,0.7);
+      animation: fly 4s ease-in-out infinite alternate;
+    }
 
-@keyframes fly {
-  from { transform: translateX(0) translateY(0) rotate(-5deg); }
-  to { transform: translateX(52px) translateY(-28px) rotate(6deg); }
-}
+    .ship::before {
+      content: "";
+      position: absolute;
+      left: -88px;
+      top: 8px;
+      width: 90px;
+      height: 18px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, transparent, rgba(255,90,223,0.2), rgba(53,231,255,0.85));
+      filter: blur(2px);
+    }
 
-.formula-box {
-  position: absolute;
-  left: 22px;
-  right: 22px;
-  bottom: 22px;
-  padding: 18px;
-  border-radius: 22px;
-  background: rgba(0, 0, 0, 0.24);
-  border: 1px solid var(--border);
-  color: var(--muted);
-  line-height: 1.6;
-}
+    .ship::after {
+      content: "";
+      position: absolute;
+      right: 12px;
+      top: 8px;
+      width: 17px;
+      height: 17px;
+      border-radius: 50%;
+      background: rgba(5, 11, 25, 0.65);
+    }
 
-.formula-box strong {
-  color: var(--text);
-  display: block;
-  margin-bottom: 4px;
-}
+    @keyframes fly {
+      from { transform: translateX(0) translateY(0) rotate(-5deg); }
+      to { transform: translateX(52px) translateY(-28px) rotate(6deg); }
+    }
 
-.grid {
-  display: grid;
-  grid-template-columns: 380px 1fr;
-  gap: 24px;
-  align-items: start;
-}
+    .formula-box {
+      position: absolute;
+      left: 22px;
+      right: 22px;
+      bottom: 22px;
+      padding: 18px;
+      border-radius: 22px;
+      background: rgba(0, 0, 0, 0.24);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      line-height: 1.6;
+    }
 
-.panel {
-  padding: 24px;
-}
+    .formula-box strong {
+      color: var(--text);
+      display: block;
+      margin-bottom: 4px;
+    }
 
-.panel h2 {
-  font-size: 22px;
-  letter-spacing: -0.03em;
-  margin-bottom: 18px;
-}
+    .grid {
+      display: grid;
+      grid-template-columns: 380px 1fr;
+      gap: 24px;
+      align-items: start;
+    }
 
-.control-group {
-  margin-bottom: 22px;
-}
+    .panel {
+      padding: 24px;
+    }
 
-.control-label {
-  display: flex;
-  justify-content: space-between;
-  gap: 14px;
-  margin-bottom: 12px;
-  color: var(--muted);
-  font-size: 14px;
-  font-weight: 700;
-}
+    .panel h2 {
+      font-size: 22px;
+      letter-spacing: -0.03em;
+      margin-bottom: 18px;
+    }
 
-.value-badge {
-  color: #06101d;
-  background: linear-gradient(135deg, var(--cyan), var(--green));
-  border-radius: 999px;
-  padding: 4px 10px;
-  font-weight: 900;
-}
+    .control-group {
+      margin-bottom: 22px;
+    }
 
-input[type="range"] {
-  width: 100%;
-  accent-color: var(--cyan);
-}
+    .control-label {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 12px;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 700;
+    }
 
-input[type="number"], select {
-  width: 100%;
-  padding: 14px 15px;
-  border-radius: 18px;
-  border: 1px solid var(--border);
-  background: rgba(255,255,255,0.09);
-  color: var(--text);
-  outline: none;
-  font-weight: 700;
-}
+    .value-badge {
+      color: #06101d;
+      background: linear-gradient(135deg, var(--cyan), var(--green));
+      border-radius: 999px;
+      padding: 4px 10px;
+      font-weight: 900;
+    }
 
-select option {
-  color: #101426;
-}
+    input[type="range"] {
+      width: 100%;
+      accent-color: var(--cyan);
+    }
 
-.preset-row {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-  margin-top: 12px;
-}
+    input[type="number"], select {
+      width: 100%;
+      padding: 14px 15px;
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.09);
+      color: var(--text);
+      outline: none;
+      font-weight: 700;
+    }
 
-.preset {
-  padding: 10px 8px;
-  border-radius: 14px;
-  border: 1px solid var(--border);
-  background: rgba(255,255,255,0.08);
-  color: var(--text);
-  cursor: pointer;
-  font-weight: 800;
-}
+    select option {
+      color: #101426;
+    }
 
-.results {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 14px;
-  margin-bottom: 24px;
-}
+    .preset-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 12px;
+    }
 
-.mini-card {
-  padding: 20px;
-  min-height: 142px;
-}
+    .preset {
+      padding: 10px 8px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.08);
+      color: var(--text);
+      cursor: pointer;
+      font-weight: 800;
+    }
 
-.mini-card .label {
-  color: var(--muted);
-  font-size: 13px;
-  margin-bottom: 10px;
-  font-weight: 700;
-}
+    .results {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-bottom: 24px;
+    }
 
-.mini-card .number {
-  font-size: clamp(24px, 3vw, 34px);
-  font-weight: 950;
-  letter-spacing: -0.06em;
-  margin-bottom: 6px;
-}
+    .mini-card {
+      padding: 20px;
+      min-height: 142px;
+    }
 
-.mini-card .desc {
-  color: var(--muted);
-  font-size: 13px;
-  line-height: 1.5;
-}
+    .mini-card .label {
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
 
-.canvas-wrap {
-  padding: 20px;
-  height: 380px;
-}
+    .mini-card .number {
+      font-size: clamp(24px, 3vw, 34px);
+      font-weight: 950;
+      letter-spacing: -0.06em;
+      margin-bottom: 6px;
+    }
 
-.explain {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-  margin-top: 24px;
-}
+    .mini-card .desc {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.5;
+    }
 
-.info-card {
-  padding: 20px;
-  border-radius: 24px;
-  border: 1px solid var(--border);
-  background: rgba(255,255,255,0.07);
-  line-height: 1.65;
-  color: var(--muted);
-}
+    .canvas-wrap {
+      padding: 20px;
+      height: 380px;
+    }
 
-.info-card h3 {
-  color: var(--text);
-  margin-bottom: 8px;
-  font-size: 16px;
-}
+    .explain {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 24px;
+    }
 
-.bar-wrap {
-  margin-top: 18px;
-  padding: 16px;
-  border-radius: 22px;
-  border: 1px solid var(--border);
-  background: rgba(0,0,0,0.18);
-}
+    .info-card {
+      padding: 20px;
+      border-radius: 24px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.07);
+      line-height: 1.65;
+      color: var(--muted);
+    }
 
-.bar-label {
-  display: flex;
-  justify-content: space-between;
-  color: var(--muted);
-  font-size: 13px;
-  margin-bottom: 8px;
-  font-weight: 700;
-}
+    .info-card h3 {
+      color: var(--text);
+      margin-bottom: 8px;
+      font-size: 16px;
+    }
 
-.bar {
-  height: 13px;
-  border-radius: 999px;
-  background: rgba(255,255,255,0.12);
-  overflow: hidden;
-}
+    .bar-wrap {
+      margin-top: 18px;
+      padding: 16px;
+      border-radius: 22px;
+      border: 1px solid var(--border);
+      background: rgba(0,0,0,0.18);
+    }
 
-.bar-fill {
-  height: 100%;
-  border-radius: inherit;
-  width: 0%;
-  background: linear-gradient(90deg, var(--cyan), var(--pink));
-  box-shadow: 0 0 20px rgba(53,231,255,0.55);
-  transition: 0.25s ease;
-}
+    .bar-label {
+      display: flex;
+      justify-content: space-between;
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
 
-.footer {
-  margin-top: 28px;
-  text-align: center;
-  color: var(--muted);
-  font-size: 13px;
-  line-height: 1.7;
-}
+    .bar {
+      height: 13px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.12);
+      overflow: hidden;
+    }
 
-@media (max-width: 980px) {
-  .hero, .grid, .explain {
-    grid-template-columns: 1fr;
-  }
-  .results {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .space-visual {
-    min-height: 360px;
-  }
-}
+    .bar-fill {
+      height: 100%;
+      border-radius: inherit;
+      width: 0%;
+      background: linear-gradient(90deg, var(--cyan), var(--pink));
+      box-shadow: 0 0 20px rgba(53,231,255,0.55);
+      transition: 0.25s ease;
+    }
 
-@media (max-width: 560px) {
-  .container { width: min(100% - 22px, 1180px); padding-top: 18px; }
-  .nav { border-radius: 24px; align-items: flex-start; flex-direction: column; }
-  .hero-card, .panel { padding: 20px; }
-  .results { grid-template-columns: 1fr; }
-  .preset-row { grid-template-columns: 1fr; }
-  .canvas-wrap { height: 310px; padding: 12px; }
-  .pill { width: 100%; }
-}
+    .footer {
+      margin-top: 28px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.7;
+    }
 
+    @media (max-width: 980px) {
+      .hero, .grid, .explain {
+        grid-template-columns: 1fr;
+      }
+      .results {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .space-visual {
+        min-height: 360px;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .container { width: min(100% - 22px, 1180px); padding-top: 18px; }
+      .nav { border-radius: 24px; align-items: flex-start; flex-direction: column; }
+      .hero-card, .panel { padding: 20px; }
+      .results { grid-template-columns: 1fr; }
+      .preset-row { grid-template-columns: 1fr; }
+      .canvas-wrap { height: 310px; padding: 12px; }
+      .pill { width: 100%; }
+    }
   </style>
 </head>
 <body>
@@ -509,134 +517,137 @@ select option {
         <div>Einstein Time Lab</div>
       </div>
       <div class="pill">Simulasi relativitas khusus + gravitasi sederhana</div>
-    </nav><section class="hero">
-  <div class="hero-card">
-    <h1>Rasakan waktu melambat saat mendekati <span class="gradient-text">kecepatan cahaya.</span></h1>
-    <p class="lead">
-      Geser kecepatan wahana, ubah durasi perjalanan, lalu lihat perbandingan waktu antara pengamat di Bumi dan penumpang. Semakin dekat kecepatan ke cahaya, semakin besar faktor gamma, dan semakin besar perbedaan waktu yang muncul.
-    </p>
-    <div class="hero-actions">
-      <button class="btn primary" onclick="setPreset(99)">Coba 99% c</button>
-      <button class="btn" onclick="setScenario('proxima')">Mode Proxima Centauri</button>
-      <button class="btn" onclick="setScenario('blackhole')">Mode Black Hole</button>
-    </div>
-  </div>
+    </nav>
 
-  <div class="hero-card space-visual">
-    <div class="orbit"></div>
-    <div class="orbit"></div>
-    <div class="planet"></div>
-    <div class="ship" id="ship"></div>
-    <div class="formula-box">
-      <strong>Rumus utama:</strong>
-      γ = 1 / √(1 − v²/c²). Waktu penumpang ≈ waktu Bumi / γ.
-    </div>
-  </div>
-</section>
-
-<section class="grid">
-  <aside class="panel">
-    <h2>Kontrol Simulasi</h2>
-
-    <div class="control-group">
-      <label class="control-label">
-        <span>Mode simulasi</span>
-      </label>
-      <select id="scenario" onchange="updateSimulation()">
-        <option value="custom">Custom: waktu Bumi manual</option>
-        <option value="proxima">Perjalanan ke Proxima Centauri</option>
-        <option value="blackhole">Dekat Black Hole</option>
-      </select>
-    </div>
-
-    <div class="control-group" id="speedControl">
-      <label class="control-label">
-        <span>Kecepatan wahana</span>
-        <span class="value-badge" id="speedText">90% c</span>
-      </label>
-      <input type="range" id="speed" min="0" max="99.9" step="0.1" value="90" oninput="updateSimulation()" />
-      <div class="preset-row">
-        <button class="preset" onclick="setPreset(50)">50% c</button>
-        <button class="preset" onclick="setPreset(90)">90% c</button>
-        <button class="preset" onclick="setPreset(99.9)">99.9% c</button>
+    <section class="hero">
+      <div class="hero-card">
+        <h1>Rasakan waktu melambat saat mendekati <span class="gradient-text">kecepatan cahaya.</span></h1>
+        <p class="lead">
+          Geser kecepatan wahana, ubah durasi perjalanan, lalu lihat perbandingan waktu antara pengamat di Bumi dan penumpang. Semakin dekat kecepatan ke cahaya, semakin besar faktor gamma, dan semakin besar perbedaan waktu yang muncul.
+        </p>
+        <div class="hero-actions">
+          <button class="btn" onclick="setPreset(99); setActive(this)">Coba 99% c</button>
+          <button class="btn" onclick="setScenario('proxima'); setActive(this)">Mode Proxima Centauri</button>
+          <button class="btn" onclick="setScenario('blackhole'); setActive(this)">Mode Black Hole</button>
+        </div>
       </div>
-    </div>
 
-    <div class="control-group" id="earthTimeControl">
-      <label class="control-label">
-        <span>Waktu menurut Bumi (tahun)</span>
-        <span class="value-badge" id="earthInputText">10</span>
-      </label>
-      <input type="range" id="earthYears" min="1" max="100" step="1" value="10" oninput="updateSimulation()" />
-    </div>
+      <div class="hero-card space-visual">
+        <div class="orbit"></div>
+        <div class="orbit"></div>
+        <div class="planet"></div>
+        <div class="ship" id="ship"></div>
+        <div class="formula-box">
+          <strong>Rumus utama:</strong>
+          γ = 1 / √(1 − v²/c²). Waktu penumpang ≈ waktu Bumi / γ.
+        </div>
+      </div>
+    </section>
 
-    <div class="control-group" id="blackHoleControl" style="display:none;">
-      <label class="control-label">
-        <span>Seberapa dekat ke horizon</span>
-        <span class="value-badge" id="gravityText">80%</span>
-      </label>
-      <input type="range" id="gravity" min="0" max="98" step="1" value="80" oninput="updateSimulation()" />
-    </div>
+    <section class="grid">
+      <aside class="panel">
+        <h2>Kontrol Simulasi</h2>
 
-    <div class="bar-wrap">
-      <div class="bar-label">
-        <span>Intensitas efek relativitas</span>
-        <span id="effectPercent">0%</span>
-      </div>
-      <div class="bar"><div class="bar-fill" id="effectBar"></div></div>
-    </div>
-  </aside>
+        <div class="control-group">
+          <label class="control-label">
+            <span>Mode simulasi</span>
+          </label>
+          <select id="scenario" onchange="updateSimulation()">
+            <option value="custom">Custom: waktu Bumi manual</option>
+            <option value="proxima">Perjalanan ke Proxima Centauri</option>
+            <option value="blackhole">Dekat Black Hole</option>
+          </select>
+        </div>
 
-  <section>
-    <div class="results">
-      <div class="mini-card">
-        <div class="label">Faktor Gamma / Gravitasi</div>
-        <div class="number" id="gammaValue">2.29×</div>
-        <div class="desc">Semakin besar nilainya, semakin kuat efek perlambatan waktu.</div>
-      </div>
-      <div class="mini-card">
-        <div class="label">Waktu Bumi</div>
-        <div class="number" id="earthTime">10 tahun</div>
-        <div class="desc">Durasi yang diukur pengamat jauh atau pengamat di Bumi.</div>
-      </div>
-      <div class="mini-card">
-        <div class="label">Waktu Penumpang</div>
-        <div class="number" id="travelerTime">4.36 tahun</div>
-        <div class="desc">Durasi yang dialami langsung oleh penumpang wahana.</div>
-      </div>
-      <div class="mini-card">
-        <div class="label">Selisih Waktu</div>
-        <div class="number" id="differenceTime">5.64 tahun</div>
-        <div class="desc">Perbedaan umur/waktu antara dua pengamat.</div>
-      </div>
-    </div>
+        <div class="control-group" id="speedControl">
+          <label class="control-label">
+            <span>Kecepatan wahana</span>
+            <span class="value-badge" id="speedText">90% c</span>
+          </label>
+          <input type="range" id="speed" min="0" max="99.9" step="0.1" value="90" oninput="updateSimulation()" />
+          <div class="preset-row">
+            <button class="preset" onclick="setPreset(50)">50% c</button>
+            <button class="preset" onclick="setPreset(90)">90% c</button>
+            <button class="preset" onclick="setPreset(99.9)">99.9% c</button>
+          </div>
+        </div>
 
-    <div class="panel canvas-wrap">
-      <canvas id="timeChart"></canvas>
-    </div>
+        <div class="control-group" id="earthTimeControl">
+          <label class="control-label">
+            <span>Waktu menurut Bumi (tahun)</span>
+            <span class="value-badge" id="earthInputText">10</span>
+          </label>
+          <input type="range" id="earthYears" min="1" max="100" step="1" value="10" oninput="updateSimulation()" />
+        </div>
 
-    <div class="explain">
-      <div class="info-card">
-        <h3>🚀 Kenapa waktu bisa beda?</h3>
-        <p>Dalam relativitas, waktu bukan sesuatu yang mutlak. Dua pengamat yang bergerak relatif sangat cepat bisa mengukur durasi yang berbeda.</p>
-      </div>
-      <div class="info-card">
-        <h3>👨‍🚀 Apakah penumpang merasa lambat?</h3>
-        <p>Tidak. Penumpang tetap merasa waktunya normal. Yang berbeda adalah saat waktunya dibandingkan dengan pengamat di Bumi.</p>
-      </div>
-      <div class="info-card">
-        <h3>🕳️ Mode black hole</h3>
-        <p>Di dekat objek sangat masif, waktu juga bisa berjalan lebih lambat dibanding pengamat yang jauh dari medan gravitasi kuat.</p>
-      </div>
-    </div>
-  </section>
-</section>
+        <div class="control-group" id="blackHoleControl" style="display:none;">
+          <label class="control-label">
+            <span>Seberapa dekat ke horizon</span>
+            <span class="value-badge" id="gravityText">80%</span>
+          </label>
+          <input type="range" id="gravity" min="0" max="98" step="1" value="80" oninput="updateSimulation()" />
+        </div>
 
-<footer class="footer">
-  Dibuat untuk edukasi. Mode black hole adalah pendekatan visual sederhana, bukan simulasi relativitas umum penuh.
-</footer>
+        <div class="bar-wrap">
+          <div class="bar-label">
+            <span>Intensitas efek relativitas</span>
+            <span id="effectPercent">0%</span>
+          </div>
+          <div class="bar"><div class="bar-fill" id="effectBar"></div></div>
+        </div>
+      </aside>
 
-  </main>  <script>
+      <section>
+        <div class="results">
+          <div class="mini-card">
+            <div class="label">Faktor Gamma / Gravitasi</div>
+            <div class="number" id="gammaValue">2.29×</div>
+            <div class="desc">Semakin besar nilainya, semakin kuat efek perlambatan waktu.</div>
+          </div>
+          <div class="mini-card">
+            <div class="label">Waktu Bumi</div>
+            <div class="number" id="earthTime">10 tahun</div>
+            <div class="desc">Durasi yang diukur pengamat jauh atau pengamat di Bumi.</div>
+          </div>
+          <div class="mini-card">
+            <div class="label">Waktu Penumpang</div>
+            <div class="number" id="travelerTime">4.36 tahun</div>
+            <div class="desc">Durasi yang dialami langsung oleh penumpang wahana.</div>
+          </div>
+          <div class="mini-card">
+            <div class="label">Selisih Waktu</div>
+            <div class="number" id="differenceTime">5.64 tahun</div>
+            <div class="desc">Perbedaan umur/waktu antara dua pengamat.</div>
+          </div>
+        </div>
+
+        <div class="panel canvas-wrap">
+          <canvas id="timeChart"></canvas>
+        </div>
+
+        <div class="explain">
+          <div class="info-card">
+            <h3>🚀 Kenapa waktu bisa beda?</h3>
+            <p>Dalam relativitas, waktu bukan sesuatu yang mutlak. Dua pengamat yang bergerak relatif sangat cepat bisa mengukur durasi yang berbeda.</p>
+          </div>
+          <div class="info-card">
+            <h3>👨‍🚀 Apakah penumpang merasa lambat?</h3>
+            <p>Tidak. Penumpang tetap merasa waktunya normal. Yang berbeda adalah saat waktunya dibandingkan dengan pengamat di Bumi.</p>
+          </div>
+          <div class="info-card">
+            <h3>🕳️ Mode black hole</h3>
+            <p>Di dekat objek sangat masif, waktu juga bisa berjalan lebih lambat dibanding pengamat yang jauh dari medan gravitasi kuat.</p>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <footer class="footer">
+      Dibuat untuk edukasi. Mode black hole adalah pendekatan visual sederhana, bukan simulasi relativitas umum penuh.
+    </footer>
+  </main>
+
+  <script>
     const speedInput = document.getElementById('speed');
     const earthYearsInput = document.getElementById('earthYears');
     const scenarioInput = document.getElementById('scenario');
@@ -686,6 +697,11 @@ select option {
       speedInput.value = value;
       scenarioInput.value = 'custom';
       updateSimulation();
+
+    function setActive(btn) {
+      document.querySelectorAll('.btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    }
     }
 
     function setScenario(value) {
@@ -816,5 +832,6 @@ select option {
     }
 
     updateSimulation();
-  </script></body>
+  </script>
+</body>
 </html>
