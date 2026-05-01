@@ -699,9 +699,13 @@
       updateSimulation();
 
     function setActive(btn) {
-      document.querySelectorAll('.btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.hero-actions .btn').forEach(b => {
+        b.classList.remove('active');
+      });
+    
       btn.classList.add('active');
     }
+      
     }
 
     function setScenario(value) {
